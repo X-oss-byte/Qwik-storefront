@@ -10,6 +10,10 @@ export default component$<{ onForward$: PropFunction<() => void> }>(({ onForward
 
 	useVisibleTask$(async () => {
 		paymentMethods.value = await getEligiblePaymentMethodsQuery();
+		setTimeout(() => {
+			const el = document.querySelector(`#checkout_step_2`) as HTMLElement;
+			el.click();
+		}, 200);
 	});
 
 	return (
@@ -22,6 +26,7 @@ export default component$<{ onForward$: PropFunction<() => void> }>(({ onForward
 								{$localize`This is a dummy payment for demonstration purposes only`}
 							</p>
 							<button
+								id="checkout_step_2"
 								class="flex px-6 bg-primary-600 hover:bg-primary-700 items-center justify-center space-x-2 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
 								onClick$={$(async () => {
 									onForward$();

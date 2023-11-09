@@ -94,6 +94,13 @@ export default component$<IProps>(({ onForward$ }) => {
 			isShippingAddressValid(appState.shippingAddress) && isActiveCustomerValid(appState.customer);
 	});
 
+	useVisibleTask$(() => {
+		setTimeout(() => {
+			const el = document.querySelector(`#checkout_step_1`) as HTMLElement;
+			el.click();
+		}, 200);
+	});
+
 	return (
 		<div>
 			<div>
@@ -159,6 +166,7 @@ export default component$<IProps>(({ onForward$ }) => {
 			</div>
 
 			<button
+				id="checkout_step_1"
 				class="bg-primary-600 hover:bg-primary-700 flex w-full items-center justify-center space-x-2 mt-24 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 disabled:bg-slate-300"
 				onClick$={$(() => {
 					if (isFormValidSignal.value) {

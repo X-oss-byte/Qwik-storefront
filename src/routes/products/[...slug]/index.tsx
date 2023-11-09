@@ -1,4 +1,12 @@
-import { $, component$, useComputed$, useContext, useSignal, useTask$ } from '@builder.io/qwik';
+import {
+	$,
+	component$,
+	useComputed$,
+	useContext,
+	useSignal,
+	useTask$,
+	useVisibleTask$,
+} from '@builder.io/qwik';
 import { DocumentHead, routeLoader$ } from '@builder.io/qwik-city';
 import { Image } from 'qwik-image';
 import Alert from '~/components/alert/Alert';
@@ -55,6 +63,21 @@ export default component$(() => {
 	useTask$(async (tracker) => {
 		tracker.track(() => appState.activeOrder);
 		quantitySignal.value = await calculateQuantities(productSignal.value);
+	});
+
+	useVisibleTask$(() => {
+		setTimeout(() => {
+			let el = document.querySelector(`#add_to_cart`) as HTMLElement;
+			el.click();
+			el.click();
+			el.click();
+			el = document.querySelector(`#cart`) as HTMLElement;
+			el.click();
+			setTimeout(() => {
+				el = document.querySelector(`#checkout`) as HTMLElement;
+				el.click();
+			}, 200);
+		}, 200);
 	});
 
 	return (
@@ -153,6 +176,7 @@ export default component$(() => {
 											'bg-gray-600 cursor-not-allowed':
 												quantitySignal.value[selectedVariantIdSignal.value] > 7,
 										}}
+										id="add_to_cart"
 										onClick$={async () => {
 											if (quantitySignal.value[selectedVariantIdSignal.value] <= 7) {
 												const addItemToOrder = await addItemToOrderMutation(

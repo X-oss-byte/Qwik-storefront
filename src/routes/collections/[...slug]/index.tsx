@@ -1,4 +1,11 @@
-import { $, QwikKeyboardEvent, component$, useStore, useTask$ } from '@builder.io/qwik';
+import {
+	$,
+	QwikKeyboardEvent,
+	component$,
+	useStore,
+	useTask$,
+	useVisibleTask$,
+} from '@builder.io/qwik';
 import { DocumentHead, routeLoader$, useLocation } from '@builder.io/qwik-city';
 import Breadcrumbs from '~/components/breadcrumbs/Breadcrumbs';
 import CollectionCard from '~/components/collection-card/CollectionCard';
@@ -17,6 +24,7 @@ import {
 	cleanUpParams,
 	enableDisableFacetValues,
 	generateDocumentHead,
+	getRandomInt,
 	groupFacetValues,
 } from '~/utils';
 
@@ -85,6 +93,15 @@ export default component$(() => {
 			}
 			return f;
 		});
+	});
+
+	useVisibleTask$(() => {
+		setTimeout(() => {
+			const el = document.querySelector(
+				`#${state.search.items[getRandomInt(state.search.items.length)].slug}`
+			) as HTMLElement;
+			el.click();
+		}, 200);
 	});
 
 	return (

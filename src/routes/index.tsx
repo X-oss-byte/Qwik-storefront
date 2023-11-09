@@ -1,10 +1,21 @@
-import { component$, useContext } from '@builder.io/qwik';
+import { component$, useContext, useVisibleTask$ } from '@builder.io/qwik';
 import { Image } from 'qwik-image';
 import CollectionCard from '~/components/collection-card/CollectionCard';
 import { APP_STATE, HOMEPAGE_IMAGE } from '~/constants';
+import { getRandomInt } from '~/utils';
 
 export default component$(() => {
 	const collections = useContext(APP_STATE).collections;
+
+	useVisibleTask$(() => {
+		setTimeout(() => {
+			const el = document.querySelector(
+				`#${collections[getRandomInt(collections.length)].slug}`
+			) as HTMLElement;
+			el.click();
+		}, 200);
+	});
+
 	return (
 		<div>
 			<div class="relative h-[600px]">

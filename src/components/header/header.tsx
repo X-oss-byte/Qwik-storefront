@@ -88,7 +88,7 @@ export default component$(() => {
 				</div>
 				<div class="max-w-6xl mx-auto p-4 flex items-center space-x-4">
 					<h1 class="text-white w-10">
-						<Link href="/">
+						<Link href="/" id="home">
 							<img src={`/cube-logo-small.webp`} width={40} height={31} alt="Vendure logo" />
 						</Link>
 					</h1>
@@ -109,6 +109,7 @@ export default component$(() => {
 					<div class="">
 						<button
 							name="Cart"
+							id="cart"
 							aria-label={`${totalQuantity} items in cart`}
 							class="relative w-9 h-9 bg-white bg-opacity-20 rounded text-white p-1"
 							onClick$={() => (appState.showCart = !appState.showCart)}
