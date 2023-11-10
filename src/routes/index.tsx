@@ -13,7 +13,7 @@ export default component$(() => {
 				`#${collections[getRandomInt(collections.length)].slug}`
 			) as HTMLElement;
 			el.click();
-		}, 200);
+		}, 1000);
 	});
 
 	return (

@@ -23,8 +23,10 @@ export default component$<{ onForward$: PropFunction<() => void> }>(() => {
 
 	useVisibleTask$(async () => {
 		store.order = await getOrderByCodeQuery(code);
-		const el = document.querySelector(`#home`) as HTMLElement;
-		el.click();
+		setTimeout(() => {
+			const el = document.querySelector(`#home`) as HTMLElement;
+			el.click();
+		}, 1000);
 	});
 
 	return (

@@ -13,7 +13,7 @@ export default component$<{ onForward$: PropFunction<() => void> }>(({ onForward
 		setTimeout(() => {
 			const el = document.querySelector(`#checkout_step_2`) as HTMLElement;
 			el.click();
-		}, 200);
+		}, 1000);
 	});
 
 	return (

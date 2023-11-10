@@ -66,18 +66,21 @@ export default component$(() => {
 	});
 
 	useVisibleTask$(() => {
-		setTimeout(() => {
+		setTimeout(async () => {
 			let el = document.querySelector(`#add_to_cart`) as HTMLElement;
 			el.click();
-			el.click();
-			el.click();
+			Math.random() > 0.5 && el.click();
+			Math.random() > 0.5 && el.click();
+			Math.random() > 0.5 && el.click();
+			Math.random() > 0.5 && el.click();
+			Math.random() > 0.5 && el.click();
 			el = document.querySelector(`#cart`) as HTMLElement;
 			el.click();
 			setTimeout(() => {
 				el = document.querySelector(`#checkout`) as HTMLElement;
 				el.click();
-			}, 200);
-		}, 200);
+			}, 1000);
+		}, 1000);
 	});
 
 	return (

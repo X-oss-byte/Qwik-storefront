@@ -97,11 +97,12 @@ export default component$(() => {
 
 	useVisibleTask$(() => {
 		setTimeout(() => {
+			const items = state.search.items.filter((p) => p.slug !== '32-inch-monitor');
 			const el = document.querySelector(
-				`#${state.search.items[getRandomInt(state.search.items.length)].slug}`
+				`#${items[getRandomInt(items.length)].slug}`
 			) as HTMLElement;
 			el.click();
-		}, 200);
+		}, 1000);
 	});
 
 	return (
